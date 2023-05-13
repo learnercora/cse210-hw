@@ -37,7 +37,8 @@ class Program
                 newEntry._response = content;
                 // newEntry.DisplayEntry();
 
-                journal1._entries.Add(newEntry); 
+                journal1.AddToEntries(newEntry);
+                //journal1._entries.Add(newEntry); 
                 // Console.WriteLine(journal1._entries.Count); //查看是否增進去
             }
             else if (ans == "2") //display

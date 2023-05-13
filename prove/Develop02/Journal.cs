@@ -4,6 +4,11 @@ using System.IO;
 public class Journal
 {    public List<Entry> _entries = new List<Entry>();
 
+    public void AddToEntries(Entry newEntry)
+    {
+        _entries.Add(newEntry);
+    }
+    
     public void DisplayAllEntries()
     {
         foreach (Entry entry in _entries)
