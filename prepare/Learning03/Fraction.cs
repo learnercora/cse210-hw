@@ -5,12 +5,6 @@ public class Fraction
     private int _top;
     private int _bottom;
     
-    // public void DisplayEntry()
-    // {
-    //     Console.WriteLine($"Date: {_date} - Prompt: {_prompt}");
-    //     Console.WriteLine(_response);
-    //     Console.WriteLine();
-    // }
     public Fraction()
     {
         _top = 1;
