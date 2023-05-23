@@ -13,8 +13,9 @@ class Program
         //string text = "Trust in the Lord with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.";
         
         
-        Word word = new Word("Trust in the Lord with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.");
-        string wordOutput = word.GetWord();
+        // Word word = new Word("Trust in the Lord with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.");
+        // string wordOutput = word.GetWord();
+        string wordOutput = "Trust in the Lord with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.";
 
         Scripture scripture = new Scripture(referenceOutput, wordOutput);
 
