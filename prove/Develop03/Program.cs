@@ -10,6 +10,8 @@ class Program
 
         Reference reference = new Reference("Proverbs","3","5","6");
         string referenceOutput = reference.GetReference();
+        //string text = "Trust in the Lord with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.";
+        
         
         Word word = new Word("Trust in the Lord with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.");
         string wordOutput = word.GetWord();

@@ -5,7 +5,7 @@ public class Word
 {
      //Attributes
     private string _word;
-    private bool _isShown = true;
+    private bool _isHide = false;
     
 
     //Constructor
@@ -23,16 +23,16 @@ public class Word
 
     public void Hide()
     {
-        _isShown = false;
+        _isHide = true;
     }
     public void Show()
     {
-        _isShown = true;
+        _isHide = false;
     }
 
     public bool IsHidden()
     {
-        return _isShown;
+        return _isHide;
     }
 
 }

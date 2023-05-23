@@ -10,80 +10,84 @@ public class Scripture
     //private List<string> _words;
     private string _textOfScripture;
     private List<int> _hideIndexList = new List<int>();
-
+    private List<Word> _wordList = new List<Word>();
+    
     //Constructor
     public Scripture(string reference, string textOfScripture)
     {
         _reference = reference;
         _textOfScripture = textOfScripture;
+        string[] words = _textOfScripture.Trim().Split(' ');
+        for(int i = 0; words.Length > i; ++i)
+        {
+            _wordList.Add(new Word(words[i]));
+        }
     }
     
     //Behaviors
     public string GetTextOfScripture() //GetRenderedText
     {
-        //Console.Clear();
+        Console.Clear();
         string output = $"{_reference} {_textOfScripture}";
         return output;
     }
 
     public void HideWords()
     {
-        string newTextOfScripture = "";
-        string[] words = _textOfScripture.Trim().Split(' ');
-
         Random random = new Random();
+        string newTextOfScripture = "";
+
+        int restWordNum = _wordList.Count - _hideIndexList.Count;
 
         //依據hideNum找出數個words中的單字
         int hideNum = random.Next(3,6); //取得要隱藏的字數
-        int i = 0;
-        while(i < hideNum) 
+        if ((restWordNum - hideNum) < hideNum) //處理若隨機數hideNum大於等於剩下未隱藏的單字
         {
-            int hideIndex = random.Next(words.Length);
-            //Console.WriteLine(hideIndex);
+            hideNum = restWordNum;
+        }
+
+        int i = 0;
+        while ( i < hideNum )
+        {
+            int hideIndex = random.Next(_wordList.Count);
             if (!_hideIndexList.Contains(hideIndex))
             {
-                _hideIndexList.Add(hideIndex);
+                _wordList[hideIndex].Hide(); //call Hide()method in Word class
+
+                _hideIndexList.Add(hideIndex); //record hide Index List
                 _hideIndexList.Sort(); 
 
-                //處理若隨機數hideNum大於等於剩下未隱藏的單字
-                int restWordNum = words.Length - _hideIndexList.Count;
-                if (!(hideNum < restWordNum))
-                {
-                    hideNum = restWordNum;
-                }
-                // Console.WriteLine("restWordNum");
-                // Console.WriteLine(restWordNum);
-
                 i++;
-            }   
+            }
         }
-        // Console.WriteLine("_hideIndexList.Count");
-        // Console.WriteLine(_hideIndexList.Count);
-        // Console.WriteLine("hideNum");
-        // Console.WriteLine(hideNum);
-        //Console.WriteLine(string.Join(", ", _hideIndexList));
+        
+        // for(int i = 0; i < hideNum ; i++) 
+        // {
+        //     int hideIndex = random.Next(_wordList.Count);
 
+        //     _wordList[hideIndex].Hide();
+        // }
+        
+        
         //把random的字變成＿
-        for (int j = 0 ; j < words.Length ; j++ ) 
+        for (int j = 0 ; j < _wordList.Count ; j++ ) 
         {
-            if (_hideIndexList.Contains(j))
+            if(_wordList[j].IsHidden())
             {
-                //Console.WriteLine(words[j]);
-                char lastWordCharacter = words[j][words[j].Length-1];
-
-                if (words[j].EndsWith(".") || words[j].EndsWith(";") || words[j].EndsWith(","))
+                string word = _wordList[j].GetWord();
+                char lastWordCharacter = word[word.Length-1];
+                if (word.EndsWith(".") || word.EndsWith(";") || word.EndsWith(","))
                 {
-                    //Console.WriteLine(words[j]);
-                    newTextOfScripture += new string('_', words[j].Length-1) + lastWordCharacter.ToString() + " ";
+                    newTextOfScripture += new string('_', word.Length-1) + lastWordCharacter.ToString() + " ";
                 }
                 else
                 {
-                    newTextOfScripture += new string('_', words[j].Length) + " ";
+                    newTextOfScripture += new string('_', word.Length) + " ";
                 }
             }
             else
             {
-                newTextOfScripture += words[j] + " ";
+                newTextOfScripture += _wordList[j].GetWord() + " ";
             }
         }
 
@@ -92,35 +96,16 @@ public class Scripture
 
     public bool IsCompletelyHidden()
     {
-        bool isCompletelyHidden = false;
-        // ** method 1 **
-        // int countChar = 0;
+        bool isCompletelyHidden = true;
 
-        // for (int i = 0 ; i < _textOfScripture.Length ; i++ )
-        // {
-        //     string regexRule = "[a-zA-Z]";
-        //     if (Regex.IsMatch(_textOfScripture[i].ToString(),regexRule))
-        //     {
-        //         //Console.WriteLine(_textOfScripture[i]);
-        //         countChar += 1;
-        //     }
-        // }
-        // if (countChar == 0)
-        // {
-        //     isCompletelyHidden = true;
-        // }
-
-        // ** method 2 **
-        string[] words = _textOfScripture.Trim().Split(' ');
-        int wordsLength = words.Length;
-        if (_hideIndexList.Count == wordsLength)
+        for(int i = 0; _wordList.Count > i; ++i)
         {
-            isCompletelyHidden = true;
+            if(_wordList[i].IsHidden() == false){
+                isCompletelyHidden = false;
+                break;
+            }
         }
         return isCompletelyHidden;
     }
-
     
-
-
 }
