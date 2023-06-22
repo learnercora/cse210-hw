@@ -1,9 +1,14 @@
 
-public class Menu 
+public class Menu
 {
-    public void DisplayMenu()
+    // private int _score;
+    // public Menu(int score)
+    // {
+    //     _score = score;
+    // }
+    public void DisplayMenu()//int score)
     {
-        Console.WriteLine();
+        //Console.WriteLine($"You have {score} point.");
         Console.WriteLine("Please select one of the following choice: ");
         Console.WriteLine("1. Write");
         Console.WriteLine("2. Display");

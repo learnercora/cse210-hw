@@ -1,0 +1,3 @@
+Score: 10
+SimpleGoal: ttt, ShortDescription: ttttt, Point: 10, Status: [X]
+EternalGoal: rrr, ShortDescription: rrrrr, Point: 20, Status: [ ]
