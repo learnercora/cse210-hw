@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        //Console.WriteLine("Hello Foundation2 World!");
+        //Console.WriteLine("Program 2: Encapsulation with Online Ordering");
 
         // Create products
         Product product1 = new Product("Product1","P1",10,2);

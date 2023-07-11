@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        //Console.WriteLine("Hello Foundation1 World!");
+        //Console.WriteLine("Program 1: Abstraction with YouTube Videos");
         // Creating videos
         Video video1 = new Video("Video 1", "Author 1", 120);
         video1.AddComment("User A", "Great video!");
